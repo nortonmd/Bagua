@@ -13,6 +13,9 @@ const markers = [
 
 const wheel = document.querySelector('#wheel');
 const viewButtons = [...document.querySelectorAll('[data-view]')];
+const animalTools = document.querySelector('#animal-tools');
+const animalModeButtons = [...animalTools.querySelectorAll('[data-animal-mode]')];
+const numberTools = document.querySelector('#number-tools');
 const playButton = document.querySelector('#number-play');
 const playLabel = document.querySelector('#play-label');
 const playStatus = document.querySelector('#play-status');
@@ -23,10 +26,15 @@ const walkingTrail = document.querySelector('#walking-trail');
 const details = document.querySelector('#marker-details');
 const detailContent = document.querySelector('#detail-content');
 const closeDetails = details.querySelector('.close-dialog');
+let showHands = false;
 
 function animalArt([column, row], extraClass = '') {
   return `<span class="animal-art ${extraClass}" aria-hidden="true"
     style="--art-x: ${column * 50}%; --art-y: ${row * 50}%"></span>`;
+}
+
+function handArt(animal, className, alt = '') {
+  return `<img class="${className}" src="images/${animal.toLowerCase()}-hands.png" alt="${alt}">`;
 }
 
 function trigram(lines) {
@@ -38,9 +46,12 @@ function trigram(lines) {
 }
 
 function showDetails(marker) {
+  const animal = marker.animal ?? 'Dragon';
+  const handDrawing = showHands ? handArt(animal, 'detail-hand-art', `${animal} hand position`) : '';
+
   if (marker.animal) {
     detailContent.innerHTML = `
-      ${animalArt(marker.art, 'detail-art')}
+      ${handDrawing || animalArt(marker.art, 'detail-art')}
       <h2 id="detail-title">${marker.animal}</h2>
       <dl class="detail-pairs">
         <div><dt>Number</dt><dd><span class="number">${marker.number}</span></dd></div>
@@ -53,6 +64,10 @@ function showDetails(marker) {
         </div>
       </dl>
       <p class="detail-text detail-lines">From top to bottom: ${marker.lines.join(', ')}.</p>`;
+  } else if (showHands) {
+    detailContent.innerHTML = `
+      ${handDrawing}
+      <h2 id="detail-title">${animal}</h2>`;
   } else {
     detailContent.innerHTML = `
       <h2 id="detail-title">Center</h2>
@@ -333,17 +348,20 @@ function walkAroundNumber(index) {
   }, steps.length * walkingStepInterval + (next ? 0 : 400));
 }
 
-function setView(view) {
+function setView(view, animalMode = 'animals') {
   stopWalking();
   stopMagicSquare();
   stopPlayback();
-  playButton.hidden = view !== 'Numbers';
-  squareButton.hidden = view !== 'Numbers';
-  walkingButton.hidden = view !== 'Numbers';
-  wheel.setAttribute('aria-label', view);
+  showHands = view === 'Animals' && animalMode === 'hands';
+  animalTools.hidden = view !== 'Animals';
+  numberTools.hidden = view !== 'Numbers';
+  wheel.setAttribute('aria-label', showHands ? 'Animal hand positions' : view);
 
   viewButtons.forEach((button) => {
     button.setAttribute('aria-pressed', String(button.dataset.view === view));
+  });
+  animalModeButtons.forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.animalMode === animalMode));
   });
 
   markers.forEach((marker, index) => {
@@ -353,10 +371,11 @@ function setView(view) {
 
     if (!marker.animal) {
       content = `<span class="number">${marker.number}</span><span class="marker-label">Center</span>`;
-      label = `Center, number ${marker.number}`;
+      label = `Center, number ${marker.number}${showHands ? ', Dragon hand position' : ''}`;
     } else if (view === 'Animals') {
-      content = `${animalArt(marker.art)}<span class="marker-label">${marker.animal}</span>`;
-      label = marker.animal;
+      const art = showHands ? handArt(marker.animal, 'hand-art') : animalArt(marker.art);
+      content = `${art}<span class="marker-label">${marker.animal}</span>`;
+      label = showHands ? `${marker.animal} hand position` : marker.animal;
     } else if (view === 'Numbers') {
       content = `<span class="number">${marker.number}</span>`;
       label = `Number ${marker.number}`;
@@ -375,6 +394,9 @@ function setView(view) {
 
 wheel.append(...markerButtons);
 viewButtons.forEach((button) => button.addEventListener('click', () => setView(button.dataset.view)));
+animalModeButtons.forEach((button) => {
+  button.addEventListener('click', () => setView('Animals', button.dataset.animalMode));
+});
 playButton.addEventListener('click', () => {
   if (playbackTimer !== undefined) {
     stopPlayback('Number sequence stopped.');

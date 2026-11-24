@@ -47,13 +47,17 @@
         </div>
         <div id="walking-trail" aria-hidden="true"></div>
       </div>
-      <div class="wheel-tools">
-        <button type="button" class="number-play" id="walking-play" aria-controls="wheel" hidden>Walking</button>
-        <button type="button" class="number-play" id="number-play" aria-controls="wheel" hidden>
+      <div class="wheel-tools animal-tools" id="animal-tools" role="group" aria-label="Animal illustrations" hidden>
+        <button type="button" class="wheel-tool" data-animal-mode="animals" aria-pressed="true" aria-controls="wheel">Animals</button>
+        <button type="button" class="wheel-tool" data-animal-mode="hands" aria-pressed="false" aria-controls="wheel">Hands</button>
+      </div>
+      <div class="wheel-tools number-tools" id="number-tools" role="group" aria-label="Number activities" hidden>
+        <button type="button" class="wheel-tool" id="walking-play" aria-controls="wheel">Walking</button>
+        <button type="button" class="wheel-tool" id="number-play" aria-controls="wheel">
           <span class="play-icon" aria-hidden="true"></span>
           <span id="play-label">Play</span>
         </button>
-        <button type="button" class="number-play" id="square-play" aria-controls="wheel" hidden>= 15</button>
+        <button type="button" class="wheel-tool" id="square-play" aria-controls="wheel">= 15</button>
       </div>
       <p class="visually-hidden" id="play-status" role="status"></p>
       <noscript><p class="wheel-help">Enable JavaScript to explore the Bagua circle.</p></noscript>
