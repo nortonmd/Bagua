@@ -304,6 +304,13 @@ h2::after {
   color: #fff7e0;
 }
 
+.wheel.is-hands .marker {
+  --light: #fff;
+  --dark: #fff;
+  --rim: var(--line);
+  color: var(--ink);
+}
+
 .marker.center { width: 18.5%; }
 
 .marker.is-lit {

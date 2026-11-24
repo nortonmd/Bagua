@@ -11,7 +11,7 @@ The published baseline at handoff is `b92570a` (Add Bagua Colors). GitHub Pages 
 | [index.html](index.html) | View buttons above the board, marker hint, Numbers controls below the board, and the marker detail dialog. |
 | [bagua.js](bagua.js) | Marker data and positions, rendering for all three views, dialog contents, and the Numbers animations. |
 | [styles.css](styles.css) | Octagon shape and colors, responsive layout, artwork crops, animation styling, and reduced-motion rules. |
-| [Animal artwork](assets/bagua-animals-ink-wash.png) | The active transparent 3×3 ink-and-wash sprite sheet. The earlier sheets in `assets/` and the three reference JPGs at the project root are reference material. |
+| [Animal artwork](assets/bagua-animals-ink-wash.png) | The active transparent 3×3 ink-and-wash sprite sheet. The earlier sheets in `assets/` are reference material. |
 
 Update the `markers` array in `bagua.js` for animal, number, trigram, or phase associations. Its first eight records run clockwise from the top, in the order **9, 2, 7, 6, 1, 8, 3, 4**. The final record is the center **5**. Array order sets the circular positions. The same marker buttons are reused across the three views.
 
