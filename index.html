@@ -16,25 +16,7 @@
       <p>Explore the circle of animals, numbers, and trigrams.</p>
     </header>
 
-    <section class="explorer" aria-labelledby="view-title">
-      <h2 id="view-title"><span id="view-name">Animals</span></h2>
-      <div class="wheel" id="wheel" role="group" aria-labelledby="view-title" aria-describedby="wheel-help">
-        <div class="wheel-lines" aria-hidden="true">
-          <div class="wheel-spoke"></div>
-          <div class="wheel-spoke"></div>
-          <div class="wheel-spoke"></div>
-          <div class="wheel-spoke"></div>
-        </div>
-      </div>
-      <div class="wheel-tools">
-        <p class="wheel-help" id="wheel-help">Select any marker to see what it represents.</p>
-        <button type="button" class="number-play" id="number-play" aria-controls="wheel" hidden>
-          <span class="play-icon" aria-hidden="true"></span>
-          <span id="play-label">Play</span>
-        </button>
-      </div>
-      <p class="visually-hidden" id="play-status" role="status"></p>
-
+    <section class="explorer" aria-label="Bagua explorer">
       <div class="view-nav" role="group" aria-label="Bagua views">
         <button type="button" data-view="Animals" aria-pressed="true" aria-controls="wheel">
           <span class="view-icon paw-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -50,6 +32,30 @@
           Trigrams
         </button>
       </div>
+      <p class="wheel-help" id="wheel-help">Select any marker to see what it represents.</p>
+      <div class="wheel" id="wheel" role="group" aria-label="Animals" aria-describedby="wheel-help">
+        <div class="wheel-lines" aria-hidden="true">
+          <div class="wheel-spoke"></div>
+          <div class="wheel-spoke"></div>
+          <div class="wheel-spoke"></div>
+          <div class="wheel-spoke"></div>
+        </div>
+        <div class="square-equation" aria-hidden="true">
+          <span class="equation-symbol">+</span>
+          <span class="equation-symbol">+</span>
+          <span class="equation-symbol">= 15</span>
+        </div>
+        <div id="walking-trail" aria-hidden="true"></div>
+      </div>
+      <div class="wheel-tools">
+        <button type="button" class="number-play" id="walking-play" aria-controls="wheel" hidden>Walking</button>
+        <button type="button" class="number-play" id="number-play" aria-controls="wheel" hidden>
+          <span class="play-icon" aria-hidden="true"></span>
+          <span id="play-label">Play</span>
+        </button>
+        <button type="button" class="number-play" id="square-play" aria-controls="wheel" hidden>= 15</button>
+      </div>
+      <p class="visually-hidden" id="play-status" role="status"></p>
       <noscript><p class="wheel-help">Enable JavaScript to explore the Bagua circle.</p></noscript>
     </section>
   </main>
