@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive guide to the animals, numbers, and trigrams of Bagua.">
+  <title>Bagua · Interactive Guide</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="bagua.js" defer></script>
+</head>
+<body>
+  <main class="guide">
+    <header class="intro">
+      <div class="title-mark" lang="zh" aria-label="八卦">八卦</div>
+      <h1>Bagua</h1>
+      <p>Explore the circle of animals, numbers, and trigrams.</p>
+    </header>
+
+    <section class="explorer" aria-labelledby="view-title">
+      <h2 id="view-title"><span id="view-name">Animals</span></h2>
+      <div class="wheel" id="wheel" role="group" aria-labelledby="view-title" aria-describedby="wheel-help">
+        <div class="wheel-lines" aria-hidden="true">
+          <div class="wheel-spoke"></div>
+          <div class="wheel-spoke"></div>
+          <div class="wheel-spoke"></div>
+          <div class="wheel-spoke"></div>
+        </div>
+      </div>
+      <div class="wheel-tools">
+        <p class="wheel-help" id="wheel-help">Select any marker to see what it represents.</p>
+        <button type="button" class="number-play" id="number-play" aria-controls="wheel" hidden>
+          <span class="play-icon" aria-hidden="true"></span>
+          <span id="play-label">Play</span>
+        </button>
+      </div>
+      <p class="visually-hidden" id="play-status" role="status"></p>
+
+      <div class="view-nav" role="group" aria-label="Bagua views">
+        <button type="button" data-view="Animals" aria-pressed="true" aria-controls="wheel">
+          <span class="view-icon paw-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          Animals
+        </button>
+        <button type="button" data-view="Numbers" aria-pressed="false" aria-controls="wheel">
+          <span class="view-icon number-icon" aria-hidden="true">#</span> Numbers
+        </button>
+        <button type="button" data-view="Trigrams" aria-pressed="false" aria-controls="wheel">
+          <span class="view-icon" aria-hidden="true">
+            <span class="nav-trigram"><i></i><i></i><i></i></span>
+          </span>
+          Trigrams
+        </button>
+      </div>
+      <noscript><p class="wheel-help">Enable JavaScript to explore the Bagua circle.</p></noscript>
+    </section>
+  </main>
+
+  <dialog id="marker-details" aria-labelledby="detail-title">
+    <button type="button" class="close-dialog" aria-label="Close marker details" autofocus>×</button>
+    <div id="detail-content"></div>
+  </dialog>
+</body>
+</html>
