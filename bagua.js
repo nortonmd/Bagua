@@ -1,14 +1,14 @@
 // Each trigram's lines are listed as they appear on screen, from top to bottom.
 const markers = [
-  { animal: 'Hawk', number: 9, name: 'Lí', meaning: 'Fire', lines: ['yang', 'yin', 'yang'], art: [0, 0], color: '' },
-  { animal: 'Unicorn', number: 2, name: 'Kūn', meaning: 'Earth', lines: ['yin', 'yin', 'yin'], art: [1, 0], color: 'sage' },
-  { animal: 'Monkey', number: 7, name: 'Duì', meaning: 'Lake', lines: ['yin', 'yang', 'yang'], art: [2, 0], color: '' },
-  { animal: 'Lion', number: 6, name: 'Qián', meaning: 'Heaven', lines: ['yang', 'yang', 'yang'], art: [0, 1], color: 'peach' },
-  { animal: 'Snake', number: 1, name: 'Kǎn', meaning: 'Water', lines: ['yin', 'yang', 'yin'], art: [2, 1], color: 'sage' },
-  { animal: 'Bear', number: 8, name: 'Gèn', meaning: 'Mountain', lines: ['yang', 'yin', 'yin'], art: [0, 2], color: '' },
-  { animal: 'Dragon', number: 3, name: 'Zhèn', meaning: 'Thunder', lines: ['yin', 'yin', 'yang'], art: [1, 2], color: 'sage' },
-  { animal: 'Phoenix', number: 4, name: 'Xùn', meaning: 'Wind', lines: ['yang', 'yang', 'yin'], art: [2, 2], color: 'peach' },
-  { number: 5, color: 'center' },
+  { animal: 'Hawk', number: 9, name: 'Lí', meaning: 'Fire', lines: ['yang', 'yin', 'yang'], art: [0, 0], phase: 'fire' },
+  { animal: 'Unicorn', number: 2, name: 'Kūn', meaning: 'Earth', lines: ['yin', 'yin', 'yin'], art: [1, 0], phase: 'earth' },
+  { animal: 'Monkey', number: 7, name: 'Duì', meaning: 'Lake', lines: ['yin', 'yang', 'yang'], art: [2, 0], phase: 'metal' },
+  { animal: 'Lion', number: 6, name: 'Qián', meaning: 'Heaven', lines: ['yang', 'yang', 'yang'], art: [0, 1], phase: 'metal' },
+  { animal: 'Snake', number: 1, name: 'Kǎn', meaning: 'Water', lines: ['yin', 'yang', 'yin'], art: [2, 1], phase: 'water' },
+  { animal: 'Bear', number: 8, name: 'Gèn', meaning: 'Mountain', lines: ['yang', 'yin', 'yin'], art: [0, 2], phase: 'earth' },
+  { animal: 'Dragon', number: 3, name: 'Zhèn', meaning: 'Thunder', lines: ['yin', 'yin', 'yang'], art: [1, 2], phase: 'wood' },
+  { animal: 'Phoenix', number: 4, name: 'Xùn', meaning: 'Wind', lines: ['yang', 'yang', 'yin'], art: [2, 2], phase: 'wood' },
+  { number: 5, phase: 'earth' },
 ];
 
 const wheel = document.querySelector('#wheel');
@@ -71,7 +71,8 @@ const markerButtons = markers.map((marker, index) => {
   const button = document.createElement('button');
   const [x, y] = circlePositions[index];
   button.type = 'button';
-  button.className = `marker ${marker.color}`;
+  button.className = `marker phase-${marker.phase}`;
+  button.classList.toggle('center', !marker.animal);
   button.setAttribute('aria-haspopup', 'dialog');
   button.style.setProperty('--x', `${x}%`);
   button.style.setProperty('--y', `${y}%`);

@@ -141,9 +141,6 @@ h2::after {
 
 .marker {
   --octagon: polygon(29.3% 0, 70.7% 0, 100% 29.3%, 100% 70.7%, 70.7% 100%, 29.3% 100%, 0 70.7%, 0 29.3%);
-  --light: #fae3b7;
-  --dark: #f2cd8b;
-  --rim: #bb864d;
   position: absolute;
   top: var(--y);
   left: var(--x);
@@ -274,34 +271,48 @@ h2::after {
   background: #235c4b;
 }
 
-.marker.sage {
-  --light: #e6ebce;
-  --dark: #c6d4ad;
-  --rim: #8c9c73;
-  color: #344534;
+.marker.phase-water {
+  --light: #3c4144;
+  --dark: #1a1d20;
+  --rim: #141719;
+  color: #fff7e0;
 }
 
-.marker.peach {
-  --light: #f8dbc1;
-  --dark: #edbb98;
-  --rim: #bf8a6d;
+.marker.phase-earth {
+  --light: #f8df8f;
+  --dark: #e3b84e;
+  --rim: #a97d2f;
 }
 
-.marker.center {
-  --light: #43634f;
-  --dark: #294739;
-  --rim: #304c39;
-  width: 18.5%;
-  color: #fff2ce;
+.marker.phase-wood {
+  --light: #b6dacf;
+  --dark: #80b5a9;
+  --rim: #548477;
+  color: #234238;
 }
+
+.marker.phase-metal {
+  --light: #fffefa;
+  --dark: #e5e5e0;
+  --rim: #9a9d96;
+}
+
+.marker.phase-fire {
+  --light: #a83f32;
+  --dark: #872a26;
+  --rim: #71251e;
+  color: #fff7e0;
+}
+
+.marker.center { width: 18.5%; }
 
 .marker.is-lit {
-  --light: #fff7bb;
-  --dark: #ffd34e;
+  --light: #fffbd8;
+  --dark: #ffe268;
   --rim: #9d601b;
   z-index: 2;
   color: #452f22;
-  filter: drop-shadow(0 0 7px #f1b13bbb);
+  filter: drop-shadow(0 0 9px #e39822d9);
 }
 
 .animal-art {
